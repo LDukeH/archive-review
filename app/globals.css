@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  font-size: 16px;
+  @apply text-primary transition-all duration-300 ease-in-out;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-primary: #e0e0e0;
+  --color-secondary: #aaaaaa;
+  --color-accent: #ffb86c;
+  --color-link: #8be9fd;
+  --color-ui: #bd93f9;
+
+  --color-bgPrimary: #0f0f0f;
+  --color-bgSecondary: #121212;
 }
 
-@media (prefers-color-scheme: dark) {
+.site {
+  @apply justify-center cursor-pointer select-none h-full flex items-center transition-all duration-450 ease-in-out border-transparent border-b-4 border-solid;
+  box-sizing: border-box;
+  min-width: 4rem;
+}
+
+.site:hover {
+  @apply border-orange-500 text-accent font-bold;
+}
+
+@media only screen and (max-width: 1440px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    font-size: 16px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media only screen and (max-width: 1280px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  :root {
+    font-size: 10px;
+  }
+}
+
+.input {
+  @apply border-2 border-white transition-all duration-300 focus:border-orange-500 focus:outline-none focus:border-2 box-border px-2 py-1;
+}
+
+.gridItem {
+  @apply col-span-1 mb-4 flex items-center gap-2;
+}
+
+select option {
+  background-color: black;
+  color: white;
+  border: transparent;
+}
+
+.label {
+  width: 120px;
+  display: inline-block;
+}
+
+.highlight {
+  @apply text-accent;
+}
+
+@layer utilities {
+  /* In global.css or another global stylesheet */
+  .swiper-scrollbar {
+    @apply bg-primary!;
+    height: 8px !important;
+    border-radius: 8px !important;
+  }
+
+  .swiper-scrollbar-drag {
+    @apply bg-orange-500!;
+    border-radius: 8px !important;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    @apply text-accent;
+  }
+
+  .swiper-pagination-bullet {
+    @apply bg-secondary!;
+  }
+  .swiper-pagination-bullet-active {
+    @apply bg-primary!;
+  }
+}
+
+.transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* For Chrome, Edge, and Safari */
+.scroll-container {
+  overflow: auto;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE and Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;               /* Chrome, Safari */
 }
