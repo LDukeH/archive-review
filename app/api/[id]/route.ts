@@ -1,15 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function GET(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
+export async function GET(request: Request, context: any) {
   const { id } = await context.params;
 
-  console.log("ID received:", id);
-
-  // Now you can use the id
   try {
     const response = await prisma.review.findUnique({
       where: { id: id as string },
