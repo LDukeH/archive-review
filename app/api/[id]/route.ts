@@ -18,8 +18,6 @@ export async function GET(
       return NextResponse.json({ error: "Review not found" }, { status: 404 });
     }
 
-    console.log(review);
-
     return NextResponse.json(review);
   } catch (error) {
     console.error("Error fetching review", error);
