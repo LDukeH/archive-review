@@ -1,12 +1,29 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import next from "next";
 
-export async function GET() {
-  try {
-    const reviews = await prisma.review.findMany({ include: { tags: true } });
+import { NextRequest } from "next/server";
+
+export async function GET(request: NextRequest) {
+  try{
+    const {searchParams} = new URL(request.url);
+    const searchTerm = searchParams.get("search") || "";
+
+    if(!searchTerm){
+      const reviews = await prisma.review.findMany();
+      return NextResponse.json(reviews);
+    }
+
+    const reviews = await prisma.review.findMany({
+      where: {
+        title: {
+          contains:searchTerm,
+          mode: "insensitive",
+        },
+      },
+
+    })
     return NextResponse.json(reviews);
-  } catch (error) {
+  }catch(error){
     console.error("Error fetching reviews:", error);
     return NextResponse.json(
       { error: "Failed to fetch reviews" },

@@ -34,7 +34,7 @@ export default function Review({ review }: { review: any }) {
           <div>External Links:</div>
           <a
             href={review.ExternalLink}
-            className="hover:text-accent hover:underline"
+            className="hover:text-link hover:underline"
           >
             {review.ExternalLink}{" "}
           </a>

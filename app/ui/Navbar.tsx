@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import Logo from "@/public/logo.svg";
 import Link from "next/link";
 
+import Search from "@/app/ui/search/Search";
+
 export default function Navbar() {
   const section = usePathname().split("/")[1]; // "movie" from "/movie/naruto"
 
@@ -31,8 +33,10 @@ export default function Navbar() {
         </div>
 
         {/* information */}
-        <div className="font-semibold justify-between gap-8 h-full flex ml-auto mr-24">
-          <button className="site">FAQ</button>
+        <div className="font-semibold justify-between items-center gap-8 h-full flex ml-auto mr-24">
+          <div>
+            <Search />
+          </div>
           <button className="site">Contact</button>
         </div>
       </div>
