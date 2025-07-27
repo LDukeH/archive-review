@@ -1,6 +1,7 @@
 import "./globals.css";
 import kumbhSans from "./font";
 import Navbar from "./ui/Navbar";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -10,7 +11,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased ${kumbhSans.className} bg-bgPrimary`}>
-        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+        </Suspense>
         <div>{children}</div>
       </body>
     </html>
