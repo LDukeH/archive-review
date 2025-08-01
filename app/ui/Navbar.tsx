@@ -10,7 +10,7 @@ export default function Navbar() {
   const section = usePathname().split("/")[1]; // "movie" from "/movie/naruto"
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-bgPrimary">
       <div className="w-full gap-6 pl-8 h-24 border-b-bgSecondary border-b-2 flex items-center mx-auto text-primary">
         <Link href={"/"} className="flex items-center h-full w-60">
           <Logo className="text-white h-full w-60 hover:text-accent cursor-pointer transition-all duration-300" />
@@ -19,13 +19,13 @@ export default function Navbar() {
         {/* sites */}
         <div className="font-semibold justify-between gap-8 h-full flex">
           <Link
-            href="/movie"
+            href="/review/movie"
             className={`site ${section === "movie" ? "highlight" : ""}`}
           >
             Movie
           </Link>
           <Link
-            href="/book"
+            href="/review/book"
             className={`site ${section === "book" ? "highlight" : ""}`}
           >
             Book
@@ -37,7 +37,12 @@ export default function Navbar() {
           <div>
             <Search />
           </div>
-          <button className="site">Contact</button>
+          <Link
+            href="/login"
+            className="cursor-pointer border-2 border-white  w-fit h-fit px-6 py-2 rounded-3xl hover:bg-accent hover:text-bgPrimary hover:border-bgPrimary focus:outline-0 focus:bg-accent focus:text-bgPrimary focus:border-bgPrimary transition-all duration-300"
+          >
+            Log-In
+          </Link>
         </div>
       </div>
     </div>

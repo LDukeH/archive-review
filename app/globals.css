@@ -22,6 +22,10 @@
   min-width: 4rem;
 }
 
+.site:focus {
+  @apply border-orange-500 text-accent font-bold outline-0;
+}
+
 .site:hover {
   @apply border-orange-500 text-accent font-bold;
 }
@@ -100,10 +104,30 @@ select option {
 /* For Chrome, Edge, and Safari */
 .scroll-container {
   overflow: auto;
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none;               /* Chrome, Safari */
+  display: none; /* Chrome, Safari */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px black inset !important;
+  -webkit-text-fill-color: #ffb86c !important;
+}
+
+.login-option {
+  @apply border-2 border-white px-2 py-1 rounded-2xl cursor-pointer transition-all duration-300;
+}
+
+.login-option:focus {
+  @apply outline-none border-accent ring-2 ring-accent;
+}
+
+.login-option:hover {
+  @apply border-accent;
 }

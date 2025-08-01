@@ -1,7 +1,7 @@
 import Movie from "@/app/ui/swiper/Movie";
 import Book from "@/app/ui/swiper/Book";
 import { Suspense } from "react";
-import SwiperSkeleton from "./ui/skeleton/SwiperSkeleton";
+import SwiperSkeleton from "../ui/skeleton/SwiperSkeleton";
 
 export default function Home() {
   return (

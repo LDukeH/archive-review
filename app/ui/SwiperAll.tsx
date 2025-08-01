@@ -26,7 +26,7 @@ export default function SwiperAll({
             <h1 className="text-2xl text-primary font-bold text-center select-none">
               {type.charAt(0).toUpperCase() + type.slice(1)} List
             </h1>
-            <Link href="/book" className="hover:text-accent">
+            <Link href="review/book" className="hover:text-accent">
               All {type.charAt(0).toUpperCase() + type.slice(1)}s
             </Link>
           </div>
@@ -44,7 +44,7 @@ export default function SwiperAll({
                 <SwiperSlide key={review.id}>
                   <div className="flex flex-col items-center justify-center pb-8 gap-1">
                     <Link
-                      href={`/${review.id}`}
+                      href={`review/${review.id}`}
                       className={`w-56 h-72 flex flex-col items-center justify-center p-4 mx-12 rounded-lg shadow-lg relative hover:scale-105 transition-all duration-300`}
                       style={{
                         backgroundImage: `url(${review.coverImage})`,
