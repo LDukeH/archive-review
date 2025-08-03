@@ -9,7 +9,6 @@ import Search from "@/app/ui/search/Search";
 import useUserStore from "@/store/userStore";
 
 import { signOut } from "next-auth/react";
-import { logOutToken } from "@/app/action";
 
 import { SessionProvider } from "next-auth/react";
 
@@ -17,6 +16,17 @@ export default function Navbar() {
   const section = usePathname().split("/")[1]; // "movie" from "/movie/naruto"
   const { user } = useUserStore();
   const isLoggedIn = user && user.data;
+
+  const logOutToken = async () => {
+    const response = await fetch("/api/auth/logout", { method: "POST" });
+    if (!response.ok) {
+      console.error("Failed to log out");
+      return;
+    }
+    console.log("Logged out successfully");
+    window.location.reload();
+    return;
+  };
 
   // require session provider to signOut, don't know why, don't change it
   return (
