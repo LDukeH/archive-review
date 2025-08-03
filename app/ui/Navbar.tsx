@@ -64,11 +64,11 @@ export default function Navbar() {
             <div>
               {isLoggedIn ? (
                 <div
-                  onClick={() => {
+                  onClick={async () => {
                     if (user.type === "token") {
-                      logOutToken();
+                      await logOutToken();
                     } else if (user.type === "oauth") {
-                      signOut({ callbackUrl: "/" });
+                      await signOut({ callbackUrl: "/" });
                     }
                     window.location.reload();
                   }}
