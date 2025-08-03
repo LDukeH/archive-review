@@ -4,6 +4,8 @@ import Link from "next/link";
 import GoogleIcon from "@/public/google.svg";
 import AppleIcon from "@/public/apple.svg";
 
+import { redirect } from "next/navigation";
+
 export default function SignIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,8 +26,8 @@ export default function SignIn() {
       console.error("Failed to sign in");
       return;
     } else {
-      console.log("User signed in successfully");
       e.currentTarget.reset(); // Reset form after successful submission
+      redirect("/");
     }
   };
 

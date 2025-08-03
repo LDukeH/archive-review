@@ -5,6 +5,10 @@ import Link from "next/link";
 import GoogleIcon from "@/public/google.svg";
 import AppleIcon from "@/public/apple.svg";
 
+import { signInWith } from "@/app/action";
+
+import { redirect } from "next/navigation";
+
 export default function LogIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,8 +27,7 @@ export default function LogIn() {
     });
 
     if (response.ok) {
-      // Handle successful login
-      console.log("User logged in successfully");
+      redirect("/");
     } else {
       // Handle login error
       console.error("Failed to log in");
@@ -112,7 +115,10 @@ export default function LogIn() {
       {/* placeholder for other type of login */}
 
       <div className="flex items-center justify-between gap-4 mt-8">
-        <button className="login-option group">
+        <button
+          className="login-option group"
+          onClick={() => signInWith("google")}
+        >
           <GoogleIcon className="h-6 w-6 inline-block mr-2" />
           <span className="text-sm group-hover:text-accent transition-all duration-300">
             Continue with Google
@@ -126,6 +132,15 @@ export default function LogIn() {
           </span>
         </button>
       </div>
+
+      <form
+        className="mt-8"
+        onSubmit={() => {
+          signInWith("github");
+        }}
+      >
+        <button type="submit">Signin with GitHub</button>
+      </form>
 
       <div className="text-link cursor-pointer transition-all duration-300 hover:underline focus:underline mt-4 w-full text-center">
         <Link href="/signin">Don't have an account?</Link>

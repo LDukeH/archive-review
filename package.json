@@ -24,7 +24,8 @@
     "react-dom": "19.1.0",
     "react-pro-sidebar": "^1.1.0",
     "swiper": "^11.2.10",
-    "use-debounce": "^10.0.5"
+    "use-debounce": "^10.0.5",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

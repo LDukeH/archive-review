@@ -3,9 +3,12 @@ import Book from "@/app/ui/swiper/Book";
 import { Suspense } from "react";
 import SwiperSkeleton from "../ui/skeleton/SwiperSkeleton";
 
+import ToStoreToken from "../ui/ToStoreToken";
+
 export default function Home() {
   return (
     <div>
+      <ToStoreToken />
       <div className="text-xl text-center">Welcome to the Owl Review</div>
       <div className="w-full mt-24 flex flex-col gap-12">
         <Suspense fallback={<SwiperSkeleton />}>

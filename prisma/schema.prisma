@@ -47,6 +47,8 @@ model User {
   emailVerified DateTime?
   password     String?
 
+  image         String?
+
   favoriteReviews Review[] 
 
   accounts      Account[]

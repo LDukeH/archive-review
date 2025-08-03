@@ -6,8 +6,15 @@ import Link from "next/link";
 
 import Search from "@/app/ui/search/Search";
 
+import useUserStore from "@/store/userStore";
+
+import { signOut } from "next-auth/react";
+import { logOutToken } from "@/app/action";
+
 export default function Navbar() {
   const section = usePathname().split("/")[1]; // "movie" from "/movie/naruto"
+  const { user } = useUserStore();
+  const isLoggedIn = user && user.data;
 
   return (
     <div className="w-full bg-bgPrimary">
@@ -37,12 +44,30 @@ export default function Navbar() {
           <div>
             <Search />
           </div>
-          <Link
-            href="/login"
-            className="cursor-pointer border-2 border-white  w-fit h-fit px-6 py-2 rounded-3xl hover:bg-accent hover:text-bgPrimary hover:border-bgPrimary focus:outline-0 focus:bg-accent focus:text-bgPrimary focus:border-bgPrimary transition-all duration-300"
-          >
-            Log-In
-          </Link>
+          <div>
+            {isLoggedIn ? (
+              <div
+                onClick={() => {
+                  if (user.type === "token") {
+                    logOutToken();
+                  } else if (user.type === "oauth") {
+                    signOut({ callbackUrl: "/" });
+                  }
+                  window.location.reload();
+                }}
+                className="cursor-pointer border-2 border-white  w-fit h-fit px-6 py-2 rounded-3xl hover:bg-accent hover:text-bgPrimary hover:border-bgPrimary focus:outline-0 focus:bg-accent focus:text-bgPrimary focus:border-bgPrimary transition-all duration-300"
+              >
+                Sign out
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="cursor-pointer border-2 border-white  w-fit h-fit px-6 py-2 rounded-3xl hover:bg-accent hover:text-bgPrimary hover:border-bgPrimary focus:outline-0 focus:bg-accent focus:text-bgPrimary focus:border-bgPrimary transition-all duration-300"
+              >
+                Log-In
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

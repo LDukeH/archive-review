@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   }
 
   const token = jwt.sign(
-    { id: existingUser.id, email: existingUser.email },
+    { id: existingUser.id, email: existingUser.email, name: existingUser.name },
     JWT_SECRET!,
     {
       expiresIn: "7d", // Token expiration time

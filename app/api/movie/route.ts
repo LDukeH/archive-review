@@ -5,8 +5,6 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const tags = searchParams.getAll("tags");
 
-  console.log("Tags received:", tags);
-
   try {
     const movie = await prisma.review.findMany({
       where:
