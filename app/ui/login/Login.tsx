@@ -133,15 +133,6 @@ export default function LogIn() {
         </button>
       </div>
 
-      <form
-        className="mt-8"
-        onSubmit={() => {
-          signInWith("github");
-        }}
-      >
-        <button type="submit">Signin with GitHub</button>
-      </form>
-
       <div className="text-link cursor-pointer transition-all duration-300 hover:underline focus:underline mt-4 w-full text-center">
         <Link href="/signin">Don't have an account?</Link>
       </div>
