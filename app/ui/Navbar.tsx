@@ -18,7 +18,10 @@ export default function Navbar() {
   const isLoggedIn = user && user.data;
 
   const logOutToken = async () => {
-    const response = await fetch("/api/auth/logout", { method: "POST" });
+    const response = await fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
     if (!response.ok) {
       console.error("Failed to log out");
       return;
