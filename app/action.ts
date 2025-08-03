@@ -13,6 +13,8 @@ export async function signInWith(provider: string) {
 
 export async function logOutToken() {
   const cookieStore = await cookies();
-  cookieStore.delete("token");
-  return;
+  cookieStore.set("token", "", {
+    path: "/",
+    maxAge: 0, // This deletes the cookie
+  });
 }

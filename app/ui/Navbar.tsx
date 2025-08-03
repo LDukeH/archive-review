@@ -18,6 +18,7 @@ export default function Navbar() {
   const { user } = useUserStore();
   const isLoggedIn = user && user.data;
 
+  // require session provider to signOut, don't know why, don't change it
   return (
     <SessionProvider>
       <div className="w-full bg-bgPrimary">
