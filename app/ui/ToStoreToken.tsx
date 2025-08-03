@@ -37,5 +37,7 @@ export default function ToStoreToken() {
     fetchToken();
   }, [session, status, setUser]);
 
+  console.log("User in ToStoreToken:", user);
+
   return null;
 }
