@@ -24,9 +24,10 @@ export default function ToStoreToken() {
         hasSetUser.current = true;
       } else {
         const response = await fetch("/api/auth/token");
-        console.log("Fetching token...");
         if (!response.ok) {
           console.error("Failed to fetch token");
+          setUser({ data: null, type: "" });
+          hasSetUser.current = false;
           return;
         }
 
