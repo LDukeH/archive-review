@@ -34,7 +34,7 @@ export default function ReviewList({ type }: { type: "book" | "movie" }) {
             <div key={review.id}>
               <div className="flex flex-col items-center justify-center pb-8 gap-1">
                 <Link
-                  href={`review/${review.id}`}
+                  href={`/review/${review.id}`}
                   className={`w-56 h-72 flex flex-col items-center justify-center p-4 mx-12 rounded-lg shadow-lg relative hover:scale-105 transition-all duration-300`}
                   style={{
                     backgroundImage: `url(${review.coverImage})`,

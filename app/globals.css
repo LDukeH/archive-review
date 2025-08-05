@@ -131,3 +131,7 @@ input:-webkit-autofill:active {
 .login-option:hover {
   @apply border-accent;
 }
+
+.menu-option {
+  @apply text-end pr-2 w-full py-1 hover:bg-accent hover:text-black cursor-pointer transition-all duration-300 font-semibold;
+}
