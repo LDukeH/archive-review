@@ -5,14 +5,17 @@ import { useSession } from "next-auth/react";
 
 import useUserStore from "@/store/userStore";
 
+import { findFavoriteReviews } from "../action";
+
 export default function ToStoreToken() {
   const { setUser, user } = useUserStore();
+
   const { data: session, status } = useSession();
 
   const hasSetUser = useRef(false);
 
   useEffect(() => {
-    if (status === "loading" || hasSetUser.current) return; // Wait for session to load
+    if (status === "loading" || hasSetUser.current || user.data) return; // Wait for session to load
 
     if (status === "unauthenticated") {
       hasSetUser.current = false;
@@ -20,7 +23,11 @@ export default function ToStoreToken() {
 
     const fetchToken = async () => {
       if (session) {
-        setUser({ data: session, type: "oauth" });
+        const favorite = await findFavoriteReviews(session.user!.id);
+        setUser({
+          data: { ...session.user, favoriteReviews: favorite || [] },
+          type: "oauth",
+        });
         hasSetUser.current = true;
       } else {
         const response = await fetch("/api/auth/token");
@@ -39,5 +46,5 @@ export default function ToStoreToken() {
     fetchToken();
   }, [session, status]);
 
-  return null;
+  return null; // This component does not render anything
 }

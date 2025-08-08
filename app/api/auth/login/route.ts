@@ -11,6 +11,7 @@ export async function POST(req: Request) {
 
   const existingUser = await prisma.user.findUnique({
     where: { email },
+    include: { favoriteReviews: true }, // Include favoriteReviews to check if the user has any favorites
   });
 
   if (!existingUser || !existingUser.password) {
@@ -24,7 +25,12 @@ export async function POST(req: Request) {
   }
 
   const token = jwt.sign(
-    { id: existingUser.id, email: existingUser.email, name: existingUser.name },
+    {
+      id: existingUser.id,
+      email: existingUser.email,
+      name: existingUser.name,
+      favoriteReviews: existingUser.favoriteReviews,
+    },
     JWT_SECRET!,
     {
       expiresIn: "7d", // Token expiration time

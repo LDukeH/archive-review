@@ -40,8 +40,6 @@ export default function Navbar() {
     window.location.reload();
   };
 
-  console.log("User data:", user.data);
-
   const logOutToken = async () => {
     const response = await fetch("/api/auth/logout", {
       method: "POST",
@@ -96,7 +94,7 @@ export default function Navbar() {
                     ) : (
                       <div className="border-1 border-accent rounded-full hover:border-black  transition-all duration-300">
                         <img
-                          src={user.data.user.image}
+                          src={user.data.image}
                           alt="User Avatar"
                           className="w-8 h-8 rounded-full"
                         />
@@ -131,7 +129,9 @@ export default function Navbar() {
                           Log-out
                         </div>
 
-                        <div className="menu-option">Profile</div>
+                        <Link href={`/profile`} className="menu-option">
+                          Profile
+                        </Link>
                       </div>
                     </motion.div>
                   )}
