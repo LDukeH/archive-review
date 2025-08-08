@@ -16,7 +16,8 @@ import { useState } from "react";
 import { addToFavorites, removeFromFavorites } from "@/app/action";
 
 export default function Review({ review }: { review: any }) {
-  const { user } = useUserStore();
+  const { user, addToFavoritesStore, removeFromFavoritesStore } =
+    useUserStore();
 
   const [isFavorite, setIsFavorite] = useState(
     user.data?.favoriteReviews.some((r: any) => r.id === review.id)
@@ -81,6 +82,7 @@ export default function Review({ review }: { review: any }) {
                         reviewId: review.id,
                         userId: user.data.id,
                       });
+                      addToFavoritesStore(review);
                     }}
                   />
                 </motion.div>
@@ -101,6 +103,7 @@ export default function Review({ review }: { review: any }) {
                         reviewId: review.id,
                         userId: user.data.id,
                       });
+                      removeFromFavoritesStore(review);
                     }}
                   />
                 </motion.div>
